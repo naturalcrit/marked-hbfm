@@ -23,3 +23,4 @@ Validates a string of markdown for errors such as unclosed embedded HTML tags. R
 * Migrate the remaining embedded extensions ( mustache blocks, hard paragraph breaks ) into their own npm modules and reference that instead
 * Come up with a methodology for users to insert, override, and/or append marked custom extensions in the **Marked.Use()** setup.
 * Transfer ownership to naturalCrit project.
+* Duplicate Homebrewery tests into module
