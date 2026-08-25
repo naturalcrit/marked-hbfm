@@ -1,9 +1,11 @@
 {
-  "name": "hbfm",
+  "name": "hbmarked",
   "version": "1.0.0",
-  "description": "Homebrewery Flavorder Markdown Wrapper for Marked",
+  "description": "Homebrewery Flavored Markdown Wrapper for Marked",
   "keywords": [
-    "hbfm"
+    "hbfm",
+    "homebrewery",
+    "marked"
   ],
   "homepage": "https://github.com/dbolack-ab/hbfm#readme",
   "bugs": {
@@ -15,8 +17,10 @@
   },
   "license": "MIT",
   "author": "David Bolack",
-  "type": "commonjs",
-  "main": "index.js",
+  "type": "module",
+  "main": "./lib/index.cjs",
+  "module": "./src/index.js",
+  "browser": "./lib/index.umd.js",
   "scripts": {
     "test": "jest --verbose",
     "lint": "eslint --fix .",
@@ -29,9 +33,9 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
-    "@rollup/plugin-commonjs": "^28.0.2",
-    "@rollup/plugin-node-resolve": "^16.0.0",
     "@markedjs/testutils": "^15.0.0-0",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.0",
     "@semantic-release/git": "^10.0.1",
@@ -50,7 +54,7 @@
   },
   "dependencies": {
     "lodash": "^4.18.1",
-    "marked": "^15.0.12",
+    "marked": ">=3 <16",
     "marked-alignment-paragraphs": "^1.0.0",
     "marked-definition-lists": "^1.0.1",
     "marked-diagrams-markdeep": "^1.0.1",
