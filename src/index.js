@@ -21,6 +21,9 @@ import elderberryInn from './elderberryInn.js';
 import gameIcons     from './gameIcons.js';
 import fontAwesome   from './fontAwesome.js';
 
+const useInitialized = false;
+const customExtensions = [];
+
 const renderer  = new Marked.Renderer();
 const tokenizer = new Marked.Tokenizer();
 
@@ -355,17 +358,26 @@ const tableTerminators = [
 
 const markdeepOptions = { langs: ['asciiArt'] };
 
-Marked.use(markedVariables());
-Marked.use(MarkedDiagramsMarkdeep(markdeepOptions));
-Marked.use(MarkedDefinitionLists());
-Marked.use({ extensions: [forcedParagraphBreaks, mustacheSpans, mustacheDivs, mustacheInjectInline] });
-Marked.use(mustacheInjectBlock);
-Marked.use(MarkedAlignedParagraphs());
-Marked.use(MarkedSubSuperText());
-Marked.use(MarkedNonbreakingSpaces());
-Marked.use({ renderer: renderer, tokenizer: tokenizer, mangle: false });
-Marked.use(MarkedExtendedTables({ interruptPatterns: tableTerminators }), MarkedGFMHeadingId({ globalSlugs: true }),
-	MarkedSmartypantsLite(), MarkedEmojis(MarkedEmojiOptions));
+const setUseInstructions = (custom) => {
+  Marked.use(markedVariables());
+  Marked.use(MarkedDiagramsMarkdeep(markdeepOptions));
+  Marked.use(MarkedDefinitionLists());
+  Marked.use({ extensions: [forcedParagraphBreaks, mustacheSpans, mustacheDivs, mustacheInjectInline] });
+  Marked.use(mustacheInjectBlock);
+  Marked.use(MarkedAlignedParagraphs());
+  Marked.use(MarkedSubSuperText());
+  Marked.use(MarkedNonbreakingSpaces());
+  Marked.use({ renderer: renderer, tokenizer: tokenizer, mangle: false });
+  Marked.use(MarkedExtendedTables({ interruptPatterns: tableTerminators }), MarkedGFMHeadingId({ globalSlugs: true }),
+    MarkedSmartypantsLite(), MarkedEmojis(MarkedEmojiOptions));
+  if(custom.length > 0) {
+    custom.forEach((customExtension)=>{
+      Marked.use(customExtension);
+    })
+  }
+  useInitialized = true;
+}
+
 
 function cleanUrl(href) {
 	try {
@@ -485,7 +497,13 @@ const mergeHTMLTags = (originalTags, newTags)=>{
 
 const hbfm = {
 	marked : Marked,
+  addExtension: (extension)=> {
+    customExtensions.push(extension);
+  },
 	render : (rawBrewText, pageNumber=0)=>{
+    if(!useInitialized) {
+      setUseInstructions(customExtensions);
+    }
 		setMarkedVariablePage(pageNumber);
 
 		const lastPageNumber = pageNumber > 0 ? getMarkedVariable('HB_pageNumber', pageNumber - 1) : 0;
