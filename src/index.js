@@ -1,7 +1,5 @@
-
-/* eslint-disable max-lines */
-import _                        from 'lodash';
-import { marked as Marked }     from 'marked';
+import _ from 'lodash';
+import { marked as Marked } from 'marked';
 import MarkedExtendedTables     from 'marked-extended-tables';
 import MarkedDefinitionLists    from 'marked-definition-lists';
 import MarkedAlignedParagraphs  from 'marked-alignment-paragraphs';
