@@ -13,7 +13,7 @@ import { markedSmartypantsLite as MarkedSmartypantsLite }                       
 import { gfmHeadingId as MarkedGFMHeadingId, resetHeadings as MarkedGFMResetHeadingIDs } from 'marked-gfm-heading-id';
 import { markedEmoji as MarkedEmojis }                                                   from 'marked-emoji';
 import MarkedDiagramsMarkdeep from 'marked-diagrams-markdeep';
-
+import MarkedHardBreaks                                                                  from 'marked-hard-breaks';
 
 //Icon fonts included so they can appear in emoji autosuggest dropdown
 import diceFont      from './diceFont.js';
@@ -307,27 +307,6 @@ const mustacheInjectBlock = {
 	}
 };
 
-const forcedParagraphBreaks = {
-	name  : 'hardBreaks',
-	level : 'block',
-	start(src) { return src.match(/\n:+$/m)?.index; },  // Hint to Marked.js to stop and check for a match
-	tokenizer(src, tokens) {
-		const regex  = /^(:+)(?:\n|$)/ym;
-		const match = regex.exec(src);
-		if(match?.length) {
-			return {
-				type   : 'hardBreaks', // Should match "name" above
-				raw    : match[0],     // Text to consume from the source
-				length : match[1].length,
-				text   : ''
-			};
-		}
-	},
-	renderer(token) {
-		return `<div class='blank'></div>\n`.repeat(token.length);
-	}
-};
-
 // Emoji options
 // To add more icon fonts, need to do these things
 // 1) Add the font file as .woff2 to themes/fonts/iconFonts folder
@@ -363,6 +342,7 @@ Marked.use(mustacheInjectBlock);
 Marked.use(MarkedAlignedParagraphs());
 Marked.use(MarkedSubSuperText());
 Marked.use(MarkedNonbreakingSpaces());
+Marked.use(MarkedHardBreaks());
 Marked.use({ renderer: renderer, tokenizer: tokenizer, mangle: false });
 Marked.use(MarkedExtendedTables({ interruptPatterns: tableTerminators }), MarkedGFMHeadingId({ globalSlugs: true }),
 	MarkedSmartypantsLite(), MarkedEmojis(MarkedEmojiOptions));

@@ -61,6 +61,7 @@
     "marked-emoji": "^2.0.3",
     "marked-extended-tables": "^2.0.1",
     "marked-gfm-heading-id": "^4.1.4",
+    "marked-hard-breaks": "^1.0.3",
     "marked-nonbreaking-spaces": "^1.0.1",
     "marked-smartypants-lite": "^1.0.3",
     "marked-subsuper-text": "^1.0.4",
