@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import _ from 'lodash';
 import { marked as Marked } from 'marked';
 import MarkedExtendedTables     from 'marked-extended-tables';
@@ -55,12 +56,10 @@ renderer.paragraph = function(token){
 
 //Fix local links in the Preview iFrame to link inside the frame
 renderer.link = function (token) {
-	let { href, title, tokens } = token;
+	let href = token.href;
+	const title = token.title;
+	const tokens = token.tokens;
 	const text = this.parser.parseInline(tokens);
-	let self = false;
-	if(href[0] == '#') {
-		self = true;
-	}
 	href = cleanUrl(href);
 
 	if(href === null) {
@@ -70,9 +69,6 @@ renderer.link = function (token) {
 	if(title) {
 		out += ` title="${escape(title)}"`;
 	}
-	// if(self) {
-	// 	out += ' target="_self"';
-	// }
 	out += `>${text}</a>`;
 	return out;
 };
@@ -568,4 +564,4 @@ const hbfm = {
 	},
 };
 
-export {hbfm}
+export { hbfm };
