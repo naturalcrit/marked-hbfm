@@ -14,7 +14,7 @@ import { markedSmartypantsLite as MarkedSmartypantsLite }                       
 import { gfmHeadingId as MarkedGFMHeadingId, resetHeadings as MarkedGFMResetHeadingIDs } from 'marked-gfm-heading-id';
 import { markedEmoji as MarkedEmojis }                                                   from 'marked-emoji';
 import MarkedDiagramsMarkdeep from 'marked-diagrams-markdeep';
-
+import MarkedUnderline from 'marked-underline';
 
 //Icon fonts included so they can appear in emoji autosuggest dropdown
 import diceFont      from './diceFont.js';
@@ -354,6 +354,7 @@ const markdeepOptions = { langs: ['asciiArt'] };
 Marked.use(markedVariables());
 Marked.use(MarkedDiagramsMarkdeep(markdeepOptions));
 Marked.use(MarkedDefinitionLists());
+Marked.use(MarkedUnderline({ justUnderline: true }));
 Marked.use({ extensions: [forcedParagraphBreaks, mustacheSpans, mustacheDivs, mustacheInjectInline] });
 Marked.use(mustacheInjectBlock);
 Marked.use(MarkedAlignedParagraphs());
@@ -362,6 +363,7 @@ Marked.use(MarkedNonbreakingSpaces());
 Marked.use({ renderer: renderer, tokenizer: tokenizer, mangle: false });
 Marked.use(MarkedExtendedTables({ interruptPatterns: tableTerminators }), MarkedGFMHeadingId({ globalSlugs: true }),
 	MarkedSmartypantsLite(), MarkedEmojis(MarkedEmojiOptions));
+  
 
 function cleanUrl(href) {
 	try {
