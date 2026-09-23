@@ -27,9 +27,6 @@
     "lint:dry": "eslint .",
     "build": "rollup -c rollup.config.umd.js"
   },
-  "peerDependencies": {
-    "marked": ">=3 <17"
-  },
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
@@ -56,7 +53,7 @@
     "eslint-plugin-jest": "^29.16.2",
     "eslint-plugin-react": "^7.37.5",
     "lodash": "^4.18.1",
-    "marked": ">=3 <16",
+    "marked": ">=3 <19",
     "marked-alignment-paragraphs": "^1.0.0",
     "marked-definition-lists": "^1.0.1",
     "marked-diagrams-markdeep": "^1.0.1",
@@ -66,6 +63,6 @@
     "marked-nonbreaking-spaces": "^1.0.1",
     "marked-smartypants-lite": "^1.0.3",
     "marked-subsuper-text": "^1.0.4",
-    "marked-variables": "^1.0.5"
+    "marked-variables": "^1.0.7"
   }
 }
