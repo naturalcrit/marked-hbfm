@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const diceFont = {
 	'df_f'                    : 'df F',
 	'df_f_minus'              : 'df F-minus',
