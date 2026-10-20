@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 99
+    groups:
+      eslint-bundle:
+        patterns: ["*eslint*"]
+        update-types: ["patch", "minor", "major"]
+      minor-dependency-updates:
+        patterns: ["*"]
+        update-types: ["patch", "minor"]
+
+
