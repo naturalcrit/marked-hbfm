@@ -10,6 +10,8 @@ import { markedVariables,
 	setMarkedVariablePage,
 	setMarkedVariable,
 	getMarkedVariable }  from 'marked-variables';
+import { addTokenPositions } from 'marked-token-position';
+import MarkedLineNumbers from 'marked-line-numbers';
 import { markedSmartypantsLite as MarkedSmartypantsLite }                                from 'marked-smartypants-lite';
 import { gfmHeadingId as MarkedGFMHeadingId, resetHeadings as MarkedGFMResetHeadingIDs } from 'marked-gfm-heading-id';
 import { markedEmoji as MarkedEmojis }                                                   from 'marked-emoji';
@@ -350,6 +352,22 @@ const tableTerminators = [
 ];
 
 const markdeepOptions = { langs: ['asciiArt'] };
+const markedLIneNumberOptions = [
+	'paragraph',
+	'image',
+	'blockquote',
+	'code',
+	'codespan',
+	'heading',
+	'list',
+	'mustacheSpans',
+	'mustacheDivs',
+	'mustacheInjectBlock',
+	'definitionListsSingleLine',
+	'definitionListsMultiLine',
+	'alignedParagraphs',
+	'hardBreaks'
+];
 
 Marked.use(markedVariables());
 Marked.use(MarkedDiagramsMarkdeep(markdeepOptions));
@@ -362,6 +380,7 @@ Marked.use(MarkedNonbreakingSpaces());
 Marked.use({ renderer: renderer, tokenizer: tokenizer, mangle: false });
 Marked.use(MarkedExtendedTables({ interruptPatterns: tableTerminators }), MarkedGFMHeadingId({ globalSlugs: true }),
 	MarkedSmartypantsLite(), MarkedEmojis(MarkedEmojiOptions));
+Marked.use(MarkedLineNumbers(markedLIneNumberOptions));
 
 function cleanUrl(href) {
 	try {
@@ -497,6 +516,8 @@ const hbfm = {
 
 		rawBrewText = opts.hooks.preprocess(rawBrewText);
 		const tokens = Marked.lexer(rawBrewText, opts);
+
+		addTokenPositions(tokens);
 
 		Marked.walkTokens(tokens, opts.walkTokens);
 
