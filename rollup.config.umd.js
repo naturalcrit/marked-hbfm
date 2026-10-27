@@ -7,7 +7,7 @@ export default [
 			format  : 'umd',
 			exports : 'named'
 		},
-		external : ['lodash', 'marked', 'marked-extended-tables', 'marked-definition-lists', 'marked-alignment-paragraphs', 'marked-nonbreaking-spaces', 'marked-subsuper-text', 'marked-variables', 'marked-smartypants-lite', 'marked-gfm-heading-id', 'marked-emoji', 'marked-diagrams-markdeep']
+		external : ['lodash', 'marked', 'marked-extended-tables', 'marked-definition-lists', 'marked-alignment-paragraphs', 'marked-nonbreaking-spaces', 'marked-subsuper-text', 'marked-variables', 'marked-smartypants-lite', 'marked-gfm-heading-id', 'marked-emoji', 'marked-diagrams-markdeep', 'marked-pele']
 	},
 	{
 		input  : 'src/index.js',
@@ -15,6 +15,6 @@ export default [
 			file   : 'lib/index.cjs',
 			format : 'cjs'
 		},
-		external : ['lodash', 'marked', 'marked-extended-tables', 'marked-definition-lists', 'marked-alignment-paragraphs', 'marked-nonbreaking-spaces', 'marked-subsuper-text', 'marked-variables', 'marked-smartypants-lite', 'marked-gfm-heading-id', 'marked-emoji', 'marked-diagrams-markdeep']
+		external : ['lodash', 'marked', 'marked-extended-tables', 'marked-definition-lists', 'marked-alignment-paragraphs', 'marked-nonbreaking-spaces', 'marked-subsuper-text', 'marked-variables', 'marked-smartypants-lite', 'marked-gfm-heading-id', 'marked-emoji', 'marked-diagrams-markdeep', 'marked-pele']
 	}
 ];

@@ -14,6 +14,7 @@ import { markedSmartypantsLite as MarkedSmartypantsLite }                       
 import { gfmHeadingId as MarkedGFMHeadingId, resetHeadings as MarkedGFMResetHeadingIDs } from 'marked-gfm-heading-id';
 import { markedEmoji as MarkedEmojis }                                                   from 'marked-emoji';
 import MarkedDiagramsMarkdeep from 'marked-diagrams-markdeep';
+import { default as MarkedPele }  from 'marked-pele';
 
 
 //Icon fonts included so they can appear in emoji autosuggest dropdown
@@ -350,8 +351,10 @@ const tableTerminators = [
 ];
 
 const markdeepOptions = { langs: ['asciiArt'] };
+const peleOptions = { langs: ['pele,mermaid'] };
 
 Marked.use(markedVariables());
+Marked.use(MarkedPele(peleOptions));
 Marked.use(MarkedDiagramsMarkdeep(markdeepOptions));
 Marked.use(MarkedDefinitionLists());
 Marked.use({ extensions: [forcedParagraphBreaks, mustacheSpans, mustacheDivs, mustacheInjectInline] });
